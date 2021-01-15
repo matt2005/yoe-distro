@@ -23,20 +23,12 @@ jobs:
           fetch-depth: 0
           submodules: recursive
           #path: '${{ github.event.pull_request.head.sha }}'
-      -
-        name: Set up QEMU
-        id: qemu
-        uses: docker/setup-qemu-action@v1
-        with:
-          image: tonistiigi/binfmt:latest
-          platforms: all
       - name: Setup
         run: |
           export LANG=en_US.UTF-8
-          export SSTATE_CACHE_DIR=/scratch/sstate-cache
-          echo export DOCKER_REPO=none > local.sh
-          echo export LANG=en_US.UTF-8 >> local.sh
-          echo export SSTATE_CACHE_DIR=/scratch/sstate-cache >> local.sh
+          export SSTATE_CACHE_DIR=~/scratch/sstate-cache
+          echo export LANG=en_US.UTF-8 > local.sh
+          echo export SSTATE_CACHE_DIR=~/scratch/sstate-cache >> local.sh
           cp conf/local.conf.sample conf/local.conf
           echo SSTATE_DIR = \"$SSTATE_CACHE_DIR\" >> conf/local.conf
           echo IMAGE_CLASSES += \"testimage testsdk\" >> conf/local.conf
