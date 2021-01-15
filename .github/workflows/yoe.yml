@@ -42,7 +42,7 @@ jobs:
           /bin/bash -c "sed -i -e 's/SDK_UPDATE_URL.*$//' conf/site.conf"
       - name: Build Image
         run: |
-          /bin/bash -c ". ./qemuarm64-envsetup.sh && bitbake yoe-qt5-image"
+          sudo /bin/bash -c ". ./qemuarm64-envsetup.sh && sudo bitbake yoe-qt5-image"
       - name: Test Image
         run: |
           echo TESTIMAGE_AUTO_qemuall = \"1\" >> conf/local.conf
