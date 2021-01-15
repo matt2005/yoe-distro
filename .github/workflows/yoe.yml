@@ -23,6 +23,13 @@ jobs:
           fetch-depth: 0
           submodules: recursive
           #path: '${{ github.event.pull_request.head.sha }}'
+      -
+        name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: all
       - name: Setup
         run: |
           export DOCKER_REPO=none
